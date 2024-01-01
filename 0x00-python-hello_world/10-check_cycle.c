@@ -14,7 +14,7 @@ int check_cycle(listint_t *list)
 	if (list == NULL)
 		return (0);
 	slow = fast = list;
-	while (fast != NULL && slow != NULL && fast->next != NULL)
+	while (fast != NULL && fast->next != NULL)
 	{
 		if (fast == slow)
 		        return (1);
