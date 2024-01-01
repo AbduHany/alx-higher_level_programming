@@ -3,4 +3,4 @@ import py_compile
 import os
 source = os.environ["PYFILE"]
 dest = source + 'c'
-py_compile.compile(source, cfile=dest)
+py_compile.compile(source, dest)
