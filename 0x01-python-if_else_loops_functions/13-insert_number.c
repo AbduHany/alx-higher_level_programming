@@ -26,17 +26,17 @@ listint_t *insert_node(listint_t **head, int number)
 	/** assigning the values to the node **/
 	new->n = number;
 	new->next = NULL;
-	/** assigning 2 tmp pointers **/
-	tmp1 = *head;
-	tmp2 = (*head)->next;
-	/** if list has no nodes **/
+	/** if list is empty **/
 	if (*head == NULL)
 	{
 		*head = new;
 		return (new);
 	}
+	/** assigning 2 tmp pointers **/
+	tmp1 = *head;
+	tmp2 = (*head)->next;
 	/** if list has one node **/
-	else if (tmp2 == NULL)
+	if (tmp2 == NULL)
 	{
 		if ((*head)->n > number)
 		{
@@ -68,6 +68,7 @@ listint_t *insert_node(listint_t **head, int number)
 		tmp1 = tmp1->next;
 		tmp2 = tmp2->next;
 	}
+	/** inserting at end of list **/
 	tmp1->next = new;
 	return (new);
 }
