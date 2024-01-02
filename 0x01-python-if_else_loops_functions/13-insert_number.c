@@ -53,16 +53,16 @@ listint_t *insert_node(listint_t **head, int number)
 	/** inserting in middle of list **/
 	while (tmp2 != NULL)
 	{
-		if (tmp1->n <= number)
-		{
-			*head = new;
-			new->next = tmp1;
-			return (new);
-		}
-		if (tmp1->n <= number && tmp2->n >= number)
+		if (number <= tmp1->n && number >= tmp2->n)
 		{
 			tmp1->next = new;
 			new->next = tmp2;
+			return (new);
+		}
+		else if (number <= tmp1->n && number <= tmp2->n)
+		{
+			*head = new;
+			new->next = tmp1;
 			return (new);
 		}
 		tmp1 = tmp1->next;
