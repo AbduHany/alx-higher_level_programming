@@ -1,6 +1,6 @@
 #include "lists.h"
 #include <stdlib.h>
-
+#include <stdio.h>
 /**
  * place_node - places the node at the right place in the list.
  */
@@ -53,7 +53,7 @@ listint_t *insert_node(listint_t **head, int number)
 	/** inserting in middle of list **/
 	while (tmp2 != NULL)
 	{
-		if (number <= tmp1->n && number >= tmp2->n)
+		if (tmp1->n <= number && tmp2->n >= number)
 		{
 			tmp1->next = new;
 			new->next = tmp2;
