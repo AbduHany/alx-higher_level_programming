@@ -30,7 +30,7 @@ listint_t *insert_node(listint_t **head, int number)
 	tmp1 = *head;
 	tmp2 = (*head)->next;
 	/** if list has no nodes **/
-	if (tmp1 == NULL)
+	if (*head == NULL)
 	{
 		*head = new;
 		return (new);
