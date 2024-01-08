@@ -3,24 +3,21 @@
 #include <stdio.h>
 
 /**
- * test - tests if string characters at end and start are alike.
- * @start: string pointer to be tested
- * @end: string length.
- * @max: number of tests.
- * Return: 1 is all characters match.
- * 0 if otherwise.
+ * totail - reaches the tail of a linked list through recursion.
+ * @head: pointer to head pointer of linked list.
+ * @tail: tail pointer of linked list.
+ * Return:
  */
-int test(int *start, int *end, int max)
+void totail(listint_t *tail, listint_t **head, int *paliflag)
 {
-	if (max == 0)
+	if (tail == NULL)
+		return;
+	totail(tail->next, head, paliflag);
+	if (tail->n != (*head)->n)
 	{
-		return (1);
+		*paliflag = 0;
 	}
-	else if (*(start) != *(end))
-	{
-		return (0);
-	}
-	return (test(start + 1, end - 1, max - 1));
+	(*head) = (*head)->next;
 }
 
 /**
@@ -31,27 +28,13 @@ int test(int *start, int *end, int max)
  */
 int is_palindrome(listint_t **head)
 {
-	int *list = NULL, count = 1, items, paliflag = 0;
-	listint_t *temp;
+	int paliflag = 1;
+	listint_t **temp, *tail;
 
 	if (head == NULL || *head == NULL || (*head)->next == NULL)
 		return (1);
-	temp = *head;
-	while (temp != NULL)
-	{
-		list = realloc(list, (count * 4));
-		if (list == NULL)
-		{
-			if (list)
-				free(list);
-			return (0);
-		}
-		list[count - 1] = temp->n;
-		count++;
-		temp = temp->next;
-	}
-	items = count - 1;
-	paliflag = test(&list[0], &list[items - 1], (items / 2));
-	free(list);
+	temp = head;
+	tail = *head;
+	totail(tail, temp, &paliflag);
 	return (paliflag);
 }
