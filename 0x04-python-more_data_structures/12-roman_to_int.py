@@ -4,6 +4,8 @@ def roman_to_int(roman_string):
 
     if (roman_string is None) or (roman_string == ""):
         return (0)
+    elif (isinstance(roman_string, str) == False):
+        return (0)
     num = 0
     for i in range(len(roman_string)):
         num += romandict.get(roman_string[i])
