@@ -35,11 +35,10 @@ class Node:
         Args:
             value (int): the value that the data attribute will be set to.
         """
-        if value:
-            if (type(value) is int):
-                self.__data = value
-            else:
-                raise TypeError("data must be an integer")
+        if (type(value) is int):
+            self.__data = value
+        else:
+            raise TypeError("data must be an integer")
 
     @next_node.setter
     def next_node(self, value):
