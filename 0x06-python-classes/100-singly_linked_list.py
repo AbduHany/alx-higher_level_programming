@@ -70,7 +70,7 @@ class SinglyLinkedList:
             value (int): the value to be in the newly added node
         """
         currentnode = self.head
-        newnode = Node(value, None)
+        newnode = Node(value)
         if currentnode is None:
             self.head = newnode
         else:
