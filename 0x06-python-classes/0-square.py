@@ -1,6 +1,11 @@
 #!/usr/bin/python3
-""" This module defines an empty class Square """
+""" This module defines the empty class named Square
+that defines a square.
+"""
 
 class Square:
-    """ empty class Square """
-    pass
+    """ empty class named Square """
+    def __init__(self):
+        """ This method initializes an Instance object of class Square
+        """
+        pass
