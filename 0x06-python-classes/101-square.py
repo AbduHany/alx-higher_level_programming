@@ -66,16 +66,13 @@ class Square:
             value (tuple): the tuple to be tested before being assigned
             to the position attribute
         """
-        if value:
-            if ((type(value) is tuple) and (len(value) == 2) and
-                    (type(value[0]) is int) and (value[0] >= 0) and
-                    (type(value[1]) is int) and (value[1] >= 0)):
-                self.__position = value
-            else:
-                a = "position must be a tuple of 2 positive integers"
-                raise TypeError(a)
+        if ((type(value) is tuple) and (len(value) == 2) and
+                (type(value[0]) is int) and (value[0] >= 0) and
+                (type(value[1]) is int) and (value[1] >= 0)):
+            self.__position = value
         else:
-            self.__position = (0, 0)
+            a = "position must be a tuple of 2 positive integers"
+            raise TypeError(a)
 
     @size.setter
     def size(self, value):
@@ -87,16 +84,13 @@ class Square:
             value (int): the value to be tested before assigning it to the
             prive attribute size.
         """
-        if value:
-            if type(value) is int:
-                if (value > 0):
-                    self.__size = value
-                else:
-                    raise ValueError("size must be >= 0")
+        if type(value) is int:
+            if (value > 0):
+                self.__size = value
             else:
-                raise TypeError("size must be an integer")
+                raise ValueError("size must be >= 0")
         else:
-            self.__size = 0
+            raise TypeError("size must be an integer")
 
     def __str__(self):
         """Prints a Square instance as a table"""
