@@ -83,7 +83,7 @@ class Square:
             prive attribute size.
         """
         if type(value) is int:
-            if (value > 0):
+            if (value >= 0):
                 self.__size = value
             else:
                 raise ValueError("size must be >= 0")
