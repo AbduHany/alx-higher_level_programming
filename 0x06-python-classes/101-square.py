@@ -9,8 +9,6 @@ class Square:
     This is an empty class named Square that defines a square.
     """
 
-    resultstring = ""
-
     def __init__(self, size=0, position=(0, 0)):
         """
         This method initiates an object instance of class Square.
@@ -94,20 +92,20 @@ class Square:
 
     def __str__(self):
         """Prints a Square instance as a table"""
-        self.resultstring = ""
+        resultstring = ""
         if (self.__size == 0):
-            self.resultstring += "\n"
+            resultstring += "\n"
         else:
             hoff = self.__position[0]
             voff = self.__position[1]
             num = self.__size
             for i in range(voff):
-                self.resultstring += "\n"
+                resultstring += "\n"
             for i in range(num):
                 for k in range(hoff):
-                    self.resultstring += " "
+                    resultstring += " "
                 for j in range(num):
-                    self.resultstring += "#"
+                    resultstring += "#"
                 if (i != (num - 1)):
-                    self.resultstring += "\n"
-        return (self.resultstring)
+                    resultstring += "\n"
+        return (resultstring)
