@@ -9,7 +9,7 @@ class Square:
     This is an empty class named Square that defines a square.
     """
 
-    resultstring = []
+    resultstring = ""
 
     def __init__(self, size=0, position=(0, 0)):
         """
@@ -100,20 +100,20 @@ class Square:
 
     def __str__(self):
         """Prints a Square instance as a table"""
-        self.resultstring = []
+        self.resultstring = ""
         if (self.__size == 0):
-            self.resultstring.append("\n")
+            self.resultstring += "\n"
         else:
             hoff = self.__position[0]
             voff = self.__position[1]
             num = self.__size
             for i in range(voff):
-                self.resultstring.append("\n")
+                self.resultstring += "\n"
             for i in range(num):
                 for k in range(hoff):
-                    self.resultstring.append(" ")
+                    self.resultstring += " "
                 for j in range(num):
-                    self.resultstring.append("#")
+                    self.resultstring += "#"
                 if (i != (num - 1)):
-                    self.resultstring.append("\n")
-        return ("".join(self.resultstring))
+                    self.resultstring += "\n"
+        return (self.resultstring)
