@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-import dis
 """This module contains the definition of the MagicClass class"""
 
 
@@ -15,8 +14,7 @@ class MagicClass:
         self.__radius = 0
         if (type(radius) is not int) and (type(radius) is not float):
                 raise TypeError("radius must be a number")
-        else:
-            self.__radius = radius
+        self.__radius = radius
 
     def area(self):
         """This method calculates the area of a circle"""
@@ -25,5 +23,3 @@ class MagicClass:
     def circumference(self):
         """This method calculates the circumference of a circle"""
         return ((math.pi * 2) * (self.__radius))
-
-print(dis.dis(MagicClass.__init__))
