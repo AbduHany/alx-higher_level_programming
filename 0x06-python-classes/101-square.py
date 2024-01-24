@@ -20,26 +20,6 @@ class Square:
         """
         self.size = size
         self.position = position
-        self.inittable()
-
-    def inittable(self):
-        """Initializes the resulttable"""
-        self.resultstring = []
-        if (self.__size == 0):
-            self.resultstring.append("\n")
-        else:
-            hoff = self.__position[0]
-            voff = self.__position[1]
-            num = self.__size
-            for i in range(voff):
-                self.resultstring.append("\n")
-            for i in range(num):
-                for k in range(hoff):
-                    self.resultstring.append(" ")
-                for j in range(num):
-                    self.resultstring.append("#")
-                if (i != (num - 1)):
-                    self.resultstring.append("\n")
 
     def area(self):
         """
@@ -119,4 +99,21 @@ class Square:
             self.__size = 0
 
     def __str__(self):
+        """Prints a Square instance as a table"""
+        self.resultstring = []
+        if (self.__size == 0):
+            self.resultstring.append("\n")
+        else:
+            hoff = self.__position[0]
+            voff = self.__position[1]
+            num = self.__size
+            for i in range(voff):
+                self.resultstring.append("\n")
+            for i in range(num):
+                for k in range(hoff):
+                    self.resultstring.append(" ")
+                for j in range(num):
+                    self.resultstring.append("#")
+                if (i != (num - 1)):
+                    self.resultstring.append("\n")
         return ("".join(self.resultstring))
