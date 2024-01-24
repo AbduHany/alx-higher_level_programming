@@ -82,19 +82,22 @@ class Square:
             value (int): the value to be tested before assigning it to the
             prive attribute size.
         """
-        if type(value) is int:
-            if (value >= 0):
-                self.__size = value
+        if value:
+            if type(value) is int:
+                if (value >= 0):
+                    self.__size = value
+                else:
+                    raise ValueError("size must be >= 0")
             else:
-                raise ValueError("size must be >= 0")
+                raise TypeError("size must be an integer")
         else:
-            raise TypeError("size must be an integer")
+            self.__size = 0
 
     def __str__(self):
         """Prints a Square instance as a table"""
         resultstring = ""
         if (self.__size == 0):
-            resultstring += "\n"
+            resultstring += ""
         else:
             hoff = self.__position[0]
             voff = self.__position[1]
