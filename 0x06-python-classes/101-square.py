@@ -116,5 +116,4 @@ class Square:
                     self.resultstring += "#"
                 if (i != (num - 1)):
                     self.resultstring += "\n"
-        print(self.resultstring, end="")
-        return("")
+        return (self.resultstring)
