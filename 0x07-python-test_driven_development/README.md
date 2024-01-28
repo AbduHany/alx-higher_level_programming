@@ -1,0 +1,2 @@
+# Python - Test-driven development
+This directory contains all the solutions & code for the "Python - Test-driven development" project (0x07-python-test_driven_development). Each file in this directory corresponds to a task in the project.
