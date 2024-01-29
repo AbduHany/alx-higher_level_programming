@@ -31,7 +31,7 @@ leftdiag = []
 
 def backtrack(row):
     """ This recursive function places a Queen starting at row 0
-    then checks for constraints found in sets (col, rightdiag, leftdiag)
+    then checks for constraints found in lists (col, rightdiag, leftdiag)
     if found it skips to the next columns ``continue``.
     """
     if row >= N:
