@@ -1,17 +1,14 @@
 #!/usr/bin/python3
-"""This module contains a function that adds 2 integers together."""
+"""
+This module contains a function that adds 2 elements together.
+after typecasting them to ints and raising errors if encountered.
+The default value of int b is 98 if not given.
+"""
+
 
 def add_integer(a, b=98):
-    """ This function adds 2 integers and returns their sum.
-
-    if only one argument is given, then the function adds this
-    input to the default contant 98.
-
-    Args:
-        a (int or float): the first integer or float to be added.
-        b (int or float): the second integer or float to be added.
-    Returns:
-        the sum after typecasting a and b to integers.
+    """
+    This function adds 2 integers and returns their sum.
     """
     if (type(a) is not int) and (type(a) is not float):
         raise TypeError("a must be an integer")
