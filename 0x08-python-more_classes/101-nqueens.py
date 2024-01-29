@@ -35,7 +35,7 @@ def backtrack(row):
                 if board[i][column] == 1:
                     pos += [[i, column]]
             sol += pos
-        res.append(sol)
+        print(sol)
         return
 
     for c in range(N):
@@ -57,5 +57,3 @@ def backtrack(row):
 
 
 backtrack(0)
-for sol in res:
-    print(sol)
