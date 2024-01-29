@@ -8,8 +8,9 @@ import sys
 if (len(sys.argv) != 2):
     print("Usage: nqueens N")
     exit(1)
-N = int(sys.argv[1])
-if (type(N) is not int):
+try:
+    N = int(sys.argv[1])
+except Exception:
     print("N must be a number")
     exit(1)
 if (N < 4):
@@ -18,8 +19,6 @@ if (N < 4):
 
 # create board (list of lists to hold queens)
 board = [[0 for i in range(N)] for i in range(N)]
-# results array
-res = []
 
 col = set()
 rightdiag = set()
