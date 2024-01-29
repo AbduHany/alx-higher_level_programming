@@ -20,12 +20,19 @@ if (N < 4):
 # create board (list of lists to hold queens)
 board = [[0 for i in range(N)] for i in range(N)]
 
+# result list of lists
+res = []
+
+# the locations that will constraint the position of a placed Queen
 col = set()
 rightdiag = set()
 leftdiag = set()
 
-
 def backtrack(row):
+    """ This recursive function places a Queen starting at row 0
+    then checks for constraints found in sets (col, rightdiag, leftdiag)
+    if found it skips to the next columns ``continue``.
+    """
     if row >= N:
         sol = []
         for i in range(len(board)):
@@ -34,7 +41,7 @@ def backtrack(row):
                 if board[i][column] == 1:
                     pos += [[i, column]]
             sol += pos
-        print(sol)
+        res.append(sol)
         return
 
     for c in range(N):
@@ -44,7 +51,7 @@ def backtrack(row):
         col.add(c)
         rightdiag.add(row + c)
         leftdiag.add(row - c)
-        board[row][c] = 1
+        board[row][c] = 1 #places a queen at position
 
         backtrack(row + 1)
 
@@ -56,3 +63,5 @@ def backtrack(row):
 
 
 backtrack(0)
+for solution in res:
+    print(solution)
