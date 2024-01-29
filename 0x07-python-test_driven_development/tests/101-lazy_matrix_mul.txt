@@ -190,3 +190,16 @@ when given only one or 0 arguments, the function raises an error.
 	>>> print(lazy_matrix_mul())
 	Traceback (most recent call last):
 	TypeError: lazy_matrix_mul() missing 2 required positional arguments: 'm_a' and 'm_b'
+
+The function can multiply lists of ints/floats (they don't have to be list of lists)
+and they could multiply a list of lists with a single list.
+
+::
+
+	>>> print(lazy_matrix_mul([[5, 3]], [2, 5.5]))
+	[26.5]
+
+::
+
+	>>> print(lazy_matrix_mul([5, 5.4], [2, 3.2]))
+	27.28
