@@ -25,6 +25,7 @@ col = set()
 rightdiag = set()
 leftdiag = set()
 
+
 def backtrack(row):
     if row == N:
         sol = []
@@ -52,6 +53,7 @@ def backtrack(row):
         rightdiag.remove(row + c)
         leftdiag.remove(row - c)
         board[row][c] = 0
+
 
 backtrack(0)
 for sol in res:
