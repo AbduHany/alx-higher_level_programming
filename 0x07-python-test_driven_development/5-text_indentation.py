@@ -15,12 +15,19 @@ def text_indentation(text):
         raise TypeError("text must be a string")
 
     newtext = ""
-    for i in range(len(text)):
-        if text[i] in ".:?":
-            newtext += text[i]
-            newtext += "\n\n"
-            continue
-        elif text[i] == ' ' and (text[i - 1] in ".:?"):
-            continue
+    i = 0
+
+    while (i < len(text)) and (text[i] == ' '):
+        i += 1
+
+    while (i < len(text)):
         newtext += text[i]
+        if (text[i] == "\n") or (text[i] in ".:?"):
+            if (text[i] in ".:?"):
+                newtext += "\n\n"
+            i += 1
+            while i < len(text) and text[i] == ' ':
+                i += 1
+        else:
+            i += 1
     print(newtext, end="")

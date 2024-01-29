@@ -1,0 +1,149 @@
+==================================
+ How to Use 5-text_indentation.py
+==================================
+
+This module defines a function ``text_indentation(text)`` that prints
+a text with 2 new lines after each of these characters: ., ? and :.
+
+::
+
+	>>> text_indentation = __import__('5-text_indentation').text_indentation
+	>>> text_indentation("How are you?")
+	How are you?
+	<BLANKLINE>
+
+empty spaces are ignored if found at beginning
+
+::
+
+	>>> text_indentation("     How are you?")
+	How are you?
+	<BLANKLINE>
+
+empty spaces are also ignored if found at end of text
+
+::
+
+	>>> text_indentation("How are you?      ")
+	How are you?
+	<BLANKLINE>
+
+if function takes in empty string or an only space string, it does nothing
+
+::
+
+	>>> text_indentation("")
+
+::
+	>>> text_indentation("         ")
+
+
+The function only prints new lines for the characters ``.``, ``?`` and ``:``
+
+::
+
+	>>> text_indentation("Hey.There.")
+	Hey.
+	<BLANKLINE>
+	There.
+	<BLANKLINE>
+
+::
+
+	>>> text_indentation("Hey.There")
+	Hey.
+	<BLANKLINE>
+	There
+
+If a string has a newline character, it's printed normally
+
+::
+
+	>>> text_indentation("Hey\n There.")
+	Hey
+	There.
+	<BLANKLINE>
+
+::
+
+	>>> text_indentation("   \n\nHey\nThere.")
+	<BLANKLINE>
+	<BLANKLINE>
+	Hey
+	There.
+	<BLANKLINE>
+
+if a string doesn't have any of the characters ".:?" it's printed
+without a newline
+
+::
+
+	>>> text_indentation("Heythere")
+	Heythere
+
+
+Case with large text like in project.
+
+::
+
+	>>> text_indentation("Lorem ipsum dolor sit amet, consectetur "
+	...	"adipiscing elit. Fusce egestas magna feugiat lacus pulvinar, "
+	...	"at feugiat enim eleifend. Phasellus facilisis lorem augue, at "
+	...	"tristique ante commodo eget. Cras sed dui non arcu hendrerit "
+	...	"molestie non a turpis. Maecenas iaculis ut orci quis laoreet. "
+	...	"Phasellus eget suscipit orci, ac euismod purus. Pellentesque "
+	...	"et elementum turpis. Cras euismod sollicitudin purus non mollis. "
+	...	"Nulla leo nisl, eleifend dignissim sollicitudin in, ultricies et leo.")
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+	<BLANKLINE>
+	Fusce egestas magna feugiat lacus pulvinar, at feugiat enim eleifend.
+	<BLANKLINE>
+	Phasellus facilisis lorem augue, at tristique ante commodo eget.
+	<BLANKLINE>
+	Cras sed dui non arcu hendrerit molestie non a turpis.
+	<BLANKLINE>
+	Maecenas iaculis ut orci quis laoreet.
+	<BLANKLINE>
+	Phasellus eget suscipit orci, ac euismod purus.
+	<BLANKLINE>
+	Pellentesque et elementum turpis.
+	<BLANKLINE>
+	Cras euismod sollicitudin purus non mollis.
+	<BLANKLINE>
+	Nulla leo nisl, eleifend dignissim sollicitudin in, ultricies et leo.
+	<BLANKLINE>
+
+if text isn't a string, a TypeError is raised.
+
+::
+
+	>>> text_indentation(None)
+	Traceback (most recent call last):
+	TypeError: text must be a string
+
+::
+
+	>>> text_indentation(50)
+	Traceback (most recent call last):
+	TypeError: text must be a string
+
+::
+
+	>>> text_indentation(("hi", "how", "are", "you?"))
+	Traceback (most recent call last):
+	TypeError: text must be a string
+
+::
+
+	>>> text_indentation({1: "hello", 2: "there"})
+	Traceback (most recent call last):
+	TypeError: text must be a string
+
+
+if no input is given, the function fails
+
+::
+
+	>>> text_indentation()
+	Traceback (most recent call last):
+	TypeError: text_indentation() missing 1 required positional argument: 'text'
