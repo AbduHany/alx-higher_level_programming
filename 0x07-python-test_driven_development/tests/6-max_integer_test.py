@@ -15,6 +15,7 @@ class TestMaxInteger(unittest.TestCase):
         """
         maxint = max_integer([])
         self.assertEqual(maxint, None)
+
     def test_stringsinlist(self):
         """Tests the case if the list has strings.
         """
@@ -43,7 +44,7 @@ class TestMaxInteger(unittest.TestCase):
     def test_stringinintlist(self):
         """Tests if the list has a string among ints & floats
         """
-        self.assertRaises(TypeError, max_integer, [1, 5.4, "HI"])
+        self.assertRaises(TypeError, max_integer, [1, 5.4, "HI", [3, 2, 5]])
 
     def test_singleelementlist(self):
         """Tests if the list has a single element.
@@ -68,6 +69,7 @@ class TestMaxInteger(unittest.TestCase):
         """
         maxint = max_integer("")
         self.assertEqual(maxint, None)
+
 
 if __name__ == '__main__':
     unittest.main()
