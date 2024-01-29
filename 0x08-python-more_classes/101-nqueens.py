@@ -27,7 +27,7 @@ leftdiag = set()
 
 
 def backtrack(row):
-    if row == N:
+    if row >= N:
         sol = []
         for i in range(len(board)):
             pos = []
@@ -53,6 +53,7 @@ def backtrack(row):
         rightdiag.remove(row + c)
         leftdiag.remove(row - c)
         board[row][c] = 0
+    return
 
 
 backtrack(0)
