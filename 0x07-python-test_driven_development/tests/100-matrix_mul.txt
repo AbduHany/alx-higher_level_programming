@@ -8,7 +8,7 @@ This module defines a function ``matrix_mul(m_a, m_b)`` that multiplies
 Numbers
 =======
 
-``matrix_divided(matrix, div)`` returns the product matrix after multiplying
+``matrix_mul(m_a, m_b)`` returns the product matrix after multiplying
 matrix ``m_a`` and ``m_b``.
 
 ::
