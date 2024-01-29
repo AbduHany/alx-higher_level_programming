@@ -34,7 +34,7 @@ def backtrack(row):
     then checks for constraints found in lists (col, rightdiag, leftdiag)
     if found it skips to the next columns ``continue``.
     """
-    if row >= N:
+    if row >= N:  # basecase for recursion function
         sol = []
         for i in range(len(board)):
             pos = []
@@ -54,7 +54,7 @@ def backtrack(row):
         leftdiag.append(row - c)
         board[row][c] = 1  # places a queen at position.
 
-        backtrack(row + 1)
+        backtrack(row + 1)  # recursive call
 
         col.remove(c)  # code program runs while backtracking.
         rightdiag.remove(row + c)
