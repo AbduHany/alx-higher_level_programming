@@ -1,0 +1,2 @@
+# Python - Everything is object
+This directory contains all the solutions & code for the "Python - Everything is object" project (0x09-python-everything_is_object). Each file in this directory corresponds to a task in the project.
