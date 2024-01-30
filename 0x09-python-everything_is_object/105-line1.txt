@@ -1,1 +1,4 @@
-0
+261
+Because the values of ints between (-5) and (256) are the most used integers. so Python
+preallocates the range from -5 (NSMALLNEGINTS) to 256 (NSMALLPOSINTS) in the memory upon
+running.
