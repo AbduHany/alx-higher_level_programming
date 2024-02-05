@@ -106,3 +106,20 @@ and does nothing
 ::
 
 	>>> bg.integer_validator(None, 5)
+
+if only one or no arguments are given to the method it raises
+a TypeError.
+
+::
+
+	>>> bg.integer_validator() # doctest: +NORMALIZE_WHITESPACE
+	Traceback (most recent call last):
+	TypeError: integer_validator() missing 2 required positional arguments:
+	'name' and 'value'
+
+::
+
+	>>> bg.integer_validator("HI") # doctest: +NORMALIZE_WHITESPACE
+	Traceback (most recent call last):
+	TypeError: integer_validator() missing 1 required positional argument:
+	'value'
