@@ -1,0 +1,50 @@
+===============================
+ How to use 7-base_geometry.py
+===============================
+
+This module defines the class BaseGeometry which has 2 methods: ``area`` and
+``integer_validator``
+
+Instantiation
+=============
+
+::
+	>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+	>>> bg = BaseGeometry()
+
+Now let's test the integer_validtor method for different values.
+The integer_validator method raises no errors if value is int and more than 0.
+
+::
+	>>> try:
+	...	bg.integer_validator("Abdu", 20)
+	... except Exception as e:
+	... 	   print(e)
+
+but if value isn't of type int or more than 0 it raises an error.
+
+::
+	>>> try:
+	...	bg.integer_validator("Abdu", "Hani")
+	... except Exception as e:
+	... 	   raise e
+	Traceback (most recent call last):
+	TypeError: Abdu must be an integer
+
+::
+	>>> try:
+	...	bg.integer_validator("Abdu", -5)
+	... except Exception as e:
+	... 	   raise e
+	Traceback (most recent call last):
+	ValueError: Abdu must be greater than 0
+
+if None is given to the method it raises an error.
+
+::
+	>>> try:
+	...	bg.integer_validator("Abdu", None)
+	... except Exception as e:
+	... 	   raise e
+	Traceback (most recent call last):
+	TypeError: Abdu must be an integer
