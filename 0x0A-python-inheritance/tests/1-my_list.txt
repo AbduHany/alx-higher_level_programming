@@ -13,6 +13,8 @@ Numbers
 
 	>>> MyList = __import__('1-my_list').MyList
 	>>> my_list = MyList()
+	>>> print(my_list)
+	[]
 
 You can see that the my_list object works exactly like a list and inherits all
 its method.
@@ -49,3 +51,4 @@ to an int.
 	>>> my_list.print_sorted()
 	Traceback (most recent call last):
 	TypeError: '<' not supported between instances of 'str' and 'int'
+

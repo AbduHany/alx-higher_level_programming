@@ -9,8 +9,6 @@ class MyList(list):
     and it inherits all its fields and methods and adds
     a new method ``print_sorted`` that prints the list sorted.
     """
-
-
     def print_sorted(self):
         """This method prints a copy of the list object, but sorted.
         """
