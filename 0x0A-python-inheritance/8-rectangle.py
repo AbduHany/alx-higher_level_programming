@@ -44,6 +44,6 @@ class Rectangle(BaseGeometry):
             ValueError if width/height aren't more than 0.
         """
         super().integer_validator("width", width)
-        super().integer_validator("height", height)
         self.__width = width
+        super().integer_validator("height", height)
         self.__height = height
