@@ -10,7 +10,8 @@ def inherits_from(obj, a_class):
         obj (object): the objects that's being tested.
         a_class (class object): the class that we're testing against.
     """
-    if issubclass(obj.__class__, a_class.__bases__):
-        return True
-    else:
-        return False
+    parents = obj.__class__.__bases__
+    for parent in parents:
+        if issubclass(parent, a_class):
+            return True
+    return False
