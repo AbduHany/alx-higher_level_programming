@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-"""This module defines a new subclass MyList
-from the class list.
+"""This module defines a new subclass MyList based off the class list.
 """
 
 
