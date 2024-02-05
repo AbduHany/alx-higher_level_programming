@@ -18,6 +18,4 @@ class MyList(list):
     def print_sorted(self):
         """This method prints a copy of the list object, but sorted.
         """
-        sorted_list = self[:]
-        sorted_list.sort()
-        print(sorted_list)
+        print(sorted(self))
