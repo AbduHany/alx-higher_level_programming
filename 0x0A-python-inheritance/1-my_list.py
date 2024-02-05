@@ -10,7 +10,7 @@ class MyList(list):
     a new method ``print_sorted`` that prints the list sorted.
     """
 
-    
+
     def print_sorted(self):
         """This method prints a copy of the list object, but sorted.
         """
