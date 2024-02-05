@@ -1,0 +1,28 @@
+=========================
+ How to Use 1-my_list.py
+=========================
+
+This module defines a subclass based off the class ``list`` that adds a new
+method that prints a copy of the list object but sorted.
+
+Numbers
+=======
+
+
+::
+
+	>>> MyList = __import__('1-my_list').MyList
+	>>> my_list = MyList()
+
+You can see that the my_list object works exactly like a list and inherits all
+its method.
+
+::
+
+	>>> my_list.append(1)
+	>>> my_list.append(4)
+	>>> my_list.append(2)
+	>>> my_list.append(3)
+	>>> my_list.append(5)
+	>>> print(my_list)
+	[1, 4, 2, 3, 5]
