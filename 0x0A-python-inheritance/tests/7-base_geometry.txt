@@ -64,6 +64,15 @@ if a non-int is given to the method it raises an error.
 ::
 
 	>>> try:
+	...	bg.integer_validator("Abdu", 3.4)
+	... except Exception as e:
+	... 	   raise e
+	Traceback (most recent call last):
+	TypeError: Abdu must be an integer
+
+::
+
+	>>> try:
 	...	bg.integer_validator("Abdu", None)
 	... except Exception as e:
 	... 	   raise e
