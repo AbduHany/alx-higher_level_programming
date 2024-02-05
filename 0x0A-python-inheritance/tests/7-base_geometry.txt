@@ -96,3 +96,25 @@ if a non-int is given to the method it raises an error.
 	... 	   raise e
 	Traceback (most recent call last):
 	TypeError: HI must be an integer
+
+::
+
+	>>> try:
+	...	bg.integer_validator("HI", [5, 4])
+	... except Exception as e:
+	... 	   raise e
+	Traceback (most recent call last):
+	TypeError: HI must be an integer
+
+
+if the name isn't a string it is still printed as a string in the
+exception raised.
+
+::
+
+	>>> try:
+	...	bg.integer_validator([23, 4, 5], [5, 4])
+	... except Exception as e:
+	... 	   raise e
+	Traceback (most recent call last):
+	TypeError: [23, 4, 5] must be an integer
