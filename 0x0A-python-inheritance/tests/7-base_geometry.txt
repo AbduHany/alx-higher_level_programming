@@ -59,7 +59,7 @@ but if value isn't of type int or more than 0 it raises an error.
 	ValueError: HI must be greater than 0
 
 
-if None is given to the method it raises an error.
+if a non-int is given to the method it raises an error.
 
 ::
 
@@ -79,4 +79,20 @@ if None is given to the method it raises an error.
 	Traceback (most recent call last):
 	TypeError: HI must be an integer
 
-if first argument isn't a string, the function
+::
+
+	>>> try:
+	...	bg.integer_validator("HI", {1: "hi", 2: "bye"})
+	... except Exception as e:
+	... 	   raise e
+	Traceback (most recent call last):
+	TypeError: HI must be an integer
+
+::
+
+	>>> try:
+	...	bg.integer_validator("HI", True)
+	... except Exception as e:
+	... 	   raise e
+	Traceback (most recent call last):
+	TypeError: HI must be an integer
