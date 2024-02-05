@@ -1,0 +1,53 @@
+=========================
+ How to Use 1-my_list.py
+=========================
+
+This module defines a subclass based off the class ``list`` that adds a new
+method that prints a copy of the list object but sorted.
+
+Numbers
+=======
+
+
+::
+
+	>>> MyList = __import__('1-my_list').MyList
+	>>> my_list = MyList()
+	>>> print(my_list)
+	[]
+
+You can see that the my_list object works exactly like a list and inherits all
+its method.
+
+::
+
+	>>> my_list.append(1)
+	>>> my_list.append(4)
+	>>> my_list.append(2)
+	>>> my_list.append(3)
+	>>> my_list.append(5)
+	>>> print(my_list)
+	[1, 4, 2, 3, 5]
+
+::
+
+	>>> my_list.print_sorted()
+	[1, 2, 3, 4, 5]
+
+When adding a string to the list
+
+::
+
+	>>> my_list.append("HI")
+	>>> print(my_list)
+	[1, 4, 2, 3, 5, 'HI']
+
+But when trying to call the ``print_sorted()`` method
+it would raise an error because it can't compare a string
+to an int.
+
+::
+
+	>>> my_list.print_sorted()
+	Traceback (most recent call last):
+	TypeError: '<' not supported between instances of 'str' and 'int'
