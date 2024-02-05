@@ -51,3 +51,9 @@ to an int.
 	>>> my_list.print_sorted()
 	Traceback (most recent call last):
 	TypeError: '<' not supported between instances of 'str' and 'int'
+
+::
+
+	>>> my_list = MyList()
+	>>> my_list.print_sorted()
+	[]
