@@ -12,49 +12,35 @@ Instantiation
 	>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
 	>>> bg = BaseGeometry()
 
+
 Now let's test the integer_validtor method for different values.
 The integer_validator method raises no errors if value is int and more than 0.
 
 ::
-	>>> try:
-	...	bg.integer_validator("Abdu", 20)
-	... except Exception as e:
-	... 	   raise e
+	>>> bg.integer_validator("Abdu", 20)
 
 we could also run the area method like so.
 
 ::
-	>>> try:
-	...	bg.area()
-	... except Exception as e:
-	... 	   raise e
+	>>> bg.area()
 	Traceback (most recent call last):
 	Exception: area() is not implemented
 
 but if value isn't of type int or more than 0 it raises an error.
 
 ::
-	>>> try:
-	...	bg.integer_validator("string abdu", "Hani")
-	... except Exception as e:
-	... 	   raise e
+	>>> bg.integer_validator("string abdu", "Hani")
 	Traceback (most recent call last):
 	TypeError: string abdu must be an integer
 
 ::
-	>>> try:
-	...	bg.integer_validator("negative abdu", -5)
-	... except Exception as e:
-	... 	   raise e
+	>>> bg.integer_validator("negative abdu", -5)
 	Traceback (most recent call last):
 	ValueError: negative abdu must be greater than 0
 
 ::
 
-	>>> try:
-	...	bg.integer_validator("zero abdu", 0)
-	... except Exception as e:
-	... 	   raise e
+	>>> bg.integer_validator("zero abdu", 0)
 	Traceback (most recent call last):
 	ValueError: zero abdu must be greater than 0
 
@@ -63,57 +49,46 @@ if a non-int is given to the method it raises an error.
 
 ::
 
-	>>> try:
-	...	bg.integer_validator("float abdu", 3.4)
-	... except Exception as e:
-	... 	   raise e
+	>>> bg.integer_validator("float abdu", 3.4)
 	Traceback (most recent call last):
 	TypeError: float abdu must be an integer
 
 ::
 
-	>>> try:
-	...	bg.integer_validator("none abdu", None)
-	... except Exception as e:
-	... 	   raise e
+	>>> bg.integer_validator("none abdu", None)
 	Traceback (most recent call last):
 	TypeError: none abdu must be an integer
 
 ::
 
-	>>> try:
-	...	bg.integer_validator("tuple abdu", (0, 1, 2))
-	... except Exception as e:
-	... 	   raise e
+	>>> bg.integer_validator("tuple abdu", (0, 1, 2))
 	Traceback (most recent call last):
 	TypeError: tuple abdu must be an integer
 
 ::
 
-	>>> try:
-	...	bg.integer_validator("dict abdu", {1: "hi", 2: "bye"})
-	... except Exception as e:
-	... 	   raise e
+	>>> bg.integer_validator("dict abdu", {1: "hi", 2: "bye"})
 	Traceback (most recent call last):
 	TypeError: dict abdu must be an integer
 
 ::
 
-	>>> try:
-	...	bg.integer_validator("bool abdu", True)
-	... except Exception as e:
-	... 	   raise e
+	>>> bg.integer_validator("bool abdu", True)
 	Traceback (most recent call last):
 	TypeError: bool abdu must be an integer
 
 ::
 
-	>>> try:
-	...	bg.integer_validator("list abdu", [5, 4])
-	... except Exception as e:
-	... 	   raise e
+	>>> bg.integer_validator("list abdu", [5, 4])
 	Traceback (most recent call last):
 	TypeError: list abdu must be an integer
+
+::
+
+	>>> bg.integer_validator("set abdu", {5, 3})
+	Traceback (most recent call last):
+	TypeError: set abdu must be an integer
+
 
 
 if the name isn't a string it is still printed as a string in the
@@ -121,18 +96,13 @@ exception raised.
 
 ::
 
-	>>> try:
-	...	bg.integer_validator([23, 4, 5], [5, 4])
-	... except Exception as e:
-	... 	   raise e
+	>>> bg.integer_validator([23, 4, 5], [5, 4])
 	Traceback (most recent call last):
 	TypeError: [23, 4, 5] must be an integer
 
-if None is given as the string it raises and exception
+if None is given as the string it doesn't raise an exception
+and does nothing
 
 ::
 
-	>>> try:
-	...	bg.integer_validator(None, 5)
-	... except Exception as e:
-	... 	   raise e
+	>>> bg.integer_validator(None, 5)
