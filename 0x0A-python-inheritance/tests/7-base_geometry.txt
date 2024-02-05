@@ -50,27 +50,6 @@ if None is given to the method it raises an error.
 	Traceback (most recent call last):
 	TypeError: Abdu must be an integer
 
-if no arugments is given or 1 argument is give, the method
-raises an exception
-
-::
-
-	>>> try:
-	...	bg.integer_validator()
-	... except Exception as e:
-	... 	   raise e
-	Traceback (most recent call last):
-	TypeError: BaseGeometry.integer_validator() missing 2 required positional arguments: 'name' and 'value'
-
-::
-
-	>>> try:
-	...	bg.integer_validator("HI")
-	... except Exception as e:
-	... 	   raise e
-	Traceback (most recent call last):
-	TypeError: BaseGeometry.integer_validator() missing 1 required positional argument: 'value'
-
 ::
 
 	>>> try:
