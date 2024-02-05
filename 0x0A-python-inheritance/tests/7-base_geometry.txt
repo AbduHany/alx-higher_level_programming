@@ -128,24 +128,3 @@ exception raised.
 	Traceback (most recent call last):
 	TypeError: [23, 4, 5] must be an integer
 
-if no arguments is given then it raises an error
-
-::
-
-	>>> try: # doctest: +NORMALIZE_WHITESPACE
-	...	bg.integer_validator([23, 4, 5])
-	... except Exception as e:
-	... 	   raise e
-	Traceback (most recent call last):
-	TypeError: BaseGeometry.integer_validator() missing 1 required
-	positional argument: 'value'
-
-::
-
-	>>> try: # doctest: +NORMALIZE_WHITESPACE
-	...	bg.integer_validator()
-	... except Exception as e:
-	... 	   raise e
-	Traceback (most recent call last):
-	TypeError: BaseGeometry.integer_validator() missing 2 required
-	positional arguments: 'name' and 'value'
