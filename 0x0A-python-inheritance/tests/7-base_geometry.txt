@@ -39,6 +39,16 @@ but if value isn't of type int or more than 0 it raises an error.
 	Traceback (most recent call last):
 	ValueError: Abdu must be greater than 0
 
+::
+
+	>>> try:
+	...	bg.integer_validator("HI", 0)
+	... except Exception as e:
+	... 	   raise e
+	Traceback (most recent call last):
+	ValueError: HI must be greater than 0
+
+
 if None is given to the method it raises an error.
 
 ::
