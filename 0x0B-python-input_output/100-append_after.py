@@ -13,8 +13,7 @@ def append_after(filename="", search_string="", new_string=""):
     """
     with open(filename, "r", encoding='utf-8') as f:
         textlist = f.readlines()
-    with open(filename, "a", encoding='utf-8') as f:
-        f.truncate(0)
+    with open(filename, "w", encoding='utf-8') as f:
         for i in range(len(textlist)):
             if "Python" in textlist[i]:
                 textlist.insert(i + 1, new_string)
