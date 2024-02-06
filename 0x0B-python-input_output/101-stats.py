@@ -4,6 +4,7 @@ metrics for the lines read.
 """
 import sys
 
+
 errordict = {
     '200': 0,
     '301': 0,
@@ -30,8 +31,8 @@ try:
                     continue
                 print("{}: {}".format(errornum, num))
 except KeyboardInterrupt:
-        print("File size: {}".format(totalsize))
-        for errornum, num in errordict.items():
-            if num == 0:
-                continue
-            print("{}: {}".format(errornum, num))
+    print("File size: {}".format(totalsize))
+    for errornum, num in errordict.items():
+        if num == 0:
+            continue
+        print("{}: {}".format(errornum, num))
