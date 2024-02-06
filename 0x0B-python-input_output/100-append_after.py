@@ -15,6 +15,6 @@ def append_after(filename="", search_string="", new_string=""):
         textlist = f.readlines()
     with open(filename, "w", encoding='utf-8') as f:
         for i in range(len(textlist)):
-            if "Python" in textlist[i]:
+            if search_string in textlist[i]:
                 textlist.insert(i + 1, new_string)
         f.writelines(textlist)
