@@ -39,4 +39,5 @@ class Student:
             json (str): The json representation of the dict that'll
                 replace the Student instance attributes.
         """
-        self.__dict__ = json
+        for key, value in json.items():
+            self.__dict__[key] = value
