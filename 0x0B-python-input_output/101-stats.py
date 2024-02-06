@@ -14,7 +14,7 @@ if __name__ == "__main__":
         '405': 0,
         '500': 0,
     }
-    i = 1
+    i = 0
     totalsize = 0
     try:
         for line in sys.stdin:
