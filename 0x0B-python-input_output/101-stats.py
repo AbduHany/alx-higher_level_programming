@@ -15,7 +15,7 @@ errordict = {
     '405': 0,
     '500': 0,
 }
-i = 0
+i = 1
 totalsize = 0
 try:
     for line in sys.stdin:
