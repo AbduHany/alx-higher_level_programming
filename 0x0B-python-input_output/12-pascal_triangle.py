@@ -4,6 +4,11 @@
 
 
 def pascal_triangle(n):
+    """This function returns a list of lists of integers representing the
+    Pascal's triangle of n
+    Args:
+        n (int): the number representing the height of the pascal's triangle
+    """
     res = []
     if (n <= 0):
         return res
