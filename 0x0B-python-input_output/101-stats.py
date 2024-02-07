@@ -33,6 +33,7 @@ if __name__ == "__main__":
             if (singleline[-2] in list(errordict.keys())):
                 errordict[singleline[-2]] += 1
             i += 1
+        print_stats(totalsize, errordict)
     except KeyboardInterrupt:
         print_stats(totalsize, errordict)
         raise
