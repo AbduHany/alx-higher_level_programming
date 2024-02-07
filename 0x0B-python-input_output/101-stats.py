@@ -26,7 +26,6 @@ if __name__ == "__main__":
     totalsize = 0
     try:
         for line in sys.stdin:
-            print(line)
             singleline = line.split()
             totalsize += int(singleline[-1])
             if (singleline[-2] in list(errordict.keys())):
