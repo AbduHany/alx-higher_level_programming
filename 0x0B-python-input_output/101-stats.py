@@ -4,6 +4,14 @@ metrics for the lines read.
 """
 if __name__ == "__main__":
     import sys
+
+    def print_stats(totalsize, errordict):
+        print("File size: {}".format(totalsize))
+        for errornum, num in errordict.items():
+            if num == 0:
+                continue
+            print("{}: {}".format(errornum, num))
+
     errordict = {
         '200': 0,
         '301': 0,
@@ -18,20 +26,14 @@ if __name__ == "__main__":
     totalsize = 0
     try:
         for line in sys.stdin:
+            print(line)
             singleline = line.split()
             totalsize += int(singleline[-1])
             if (singleline[-2] in list(errordict.keys())):
                 errordict[singleline[-2]] += 1
             i += 1
             if ((i % 10) == 0):
-                print("File size: {}".format(totalsize))
-                for errornum, num in errordict.items():
-                    if num == 0:
-                        continue
-                    print("{}: {}".format(errornum, num))
+                print_stats(totalsize, errordict)
     except KeyboardInterrupt:
-        print("File size: {}".format(totalsize))
-        for errornum, num in errordict.items():
-            if num == 0:
-                continue
-            print("{}: {}".format(errornum, num))
+        print_stats(totalsize, errordict)
+        raise
