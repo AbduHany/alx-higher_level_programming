@@ -29,7 +29,10 @@ if __name__ == "__main__":
             if ((i % 10) == 0) and (i != 0):
                 print_stats(totalsize, errordict)
             singleline = line.split()
-            totalsize += int(singleline[-1])
+            try:
+                totalsize += int(singleline[-1])
+            except Exception:
+                pass
             if (singleline[-2] in list(errordict.keys())):
                 errordict[singleline[-2]] += 1
             i += 1
