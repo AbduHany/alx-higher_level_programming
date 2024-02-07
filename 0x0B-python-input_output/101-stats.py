@@ -7,10 +7,10 @@ if __name__ == "__main__":
 
     def print_stats(totalsize, errordict):
         print("File size: {}".format(totalsize))
-        for key in sorted(errordict.keys()):
-            if errordict[key] == 0:
+        for key, num in errordict.items():
+            if num == 0:
                 continue
-            print("{}: {}".format(key, errordict[key]))
+            print("{}: {}".format(key, num))
 
     errordict = {
         '200': 0,
