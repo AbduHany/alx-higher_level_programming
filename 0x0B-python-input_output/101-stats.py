@@ -33,8 +33,11 @@ if __name__ == "__main__":
                 totalsize += int(singleline[-1])
             except Exception:
                 pass
-            if (singleline[-2] in list(errordict.keys())):
-                errordict[singleline[-2]] += 1
+            try:
+                if (singleline[-2] in list(errordict.keys())):
+                    errordict[singleline[-2]] += 1
+            except Exception:
+                pass
             i += 1
         print_stats(totalsize, errordict)
     except KeyboardInterrupt:
