@@ -29,17 +29,21 @@ if __name__ == "__main__":
             if ((i % 10) == 0) and (i != 0):
                 print_stats(totalsize, errordict)
             singleline = line.split()
+
             try:
                 totalsize += int(singleline[-1])
             except Exception:
                 pass
+
             try:
                 if (singleline[-2] in list(errordict.keys())):
                     errordict[singleline[-2]] += 1
             except Exception:
                 pass
+
             i += 1
         print_stats(totalsize, errordict)
+
     except KeyboardInterrupt:
         print_stats(totalsize, errordict)
         raise
