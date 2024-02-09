@@ -23,4 +23,23 @@ class Square(Rectangle):
         """This method prints a string representation of a Square object.
         """
         return ("[Square] ({}) {}/{} - {}".format(self.id, self.x, self.y,
-                                                  self.height))
+                                                  self.width))
+
+    @property
+    def size(self):
+        """This is a getter method for the size attribute of a square object.
+        """
+        return self.width
+
+    @size.setter
+    def size(self, value):
+        """This is the setter method for the size attribute for a square object.
+        Args:
+            value (int): the value that size will be assigned to.
+        """
+        if (type(value) is not int):
+            raise TypeError("width must be an integer")
+        elif (value <= 0):
+            raise ValueError("width must be > 0")
+        self.width = value
+        self.height = value
