@@ -139,7 +139,7 @@ class Rectangle(Base):
                                                         self.__y, self.__width,
                                                         self.__height))
 
-    def update(self, *args):
+    def update(self, *args, **kwargs):
         """This method updates the values of a Rectangle Object's attributes.
         Args:
             args[0] (int): changes the id attribute.
@@ -148,16 +148,29 @@ class Rectangle(Base):
             args[3] (int): changes the x attribute.
             args[4] (int): changes the y attribute.
         """
-        count = 0
-        for arg in args:
-            if count == 0:
-                self.id = arg
-            elif count == 1:
-                self.__width = arg
-            elif count == 2:
-                self.__height = arg
-            elif count == 3:
-                self.__x = arg
-            elif count == 4:
-                self.__y = arg
-            count += 1
+        if (args) and len(args) != 0:
+            count = 0
+            for arg in args:
+                if count == 0:
+                    self.id = arg
+                elif count == 1:
+                    self.__width = arg
+                elif count == 2:
+                    self.__height = arg
+                elif count == 3:
+                    self.__x = arg
+                elif count == 4:
+                    self.__y = arg
+                count += 1
+        else:
+            for arg in kwargs:
+                if arg == 'id':
+                    self.id = kwargs[arg]
+                elif arg == 'width':
+                    self.__width = kwargs[arg]
+                elif arg == 'height':
+                    self.__height = kwargs[arg]
+                elif arg == 'x':
+                    self.__x = kwargs[arg]
+                elif arg == 'y':
+                    self.__y = kwargs[arg]
