@@ -76,3 +76,21 @@ class Base:
                 dictionary['size'] = dictionary['width']
             newobj.update(**dictionary)
         return (newobj)
+
+    @classmethod
+    def load_from_file(cls):
+        """This method returns a list of instances read
+        from a file.
+        """
+        filename = "{}.json".format(cls.__name__)
+        try:
+            with open(filename, "r", encoding='utf-8') as f:
+                instance_list = []
+                content = f.read()
+                objects = cls.from_json_string(content)
+                for object in objects:
+                    newobj = cls.create(**object)
+                    instance_list.append(newobj)
+                return (instance_list)
+        except FileNotFoundError:
+            return ([])
