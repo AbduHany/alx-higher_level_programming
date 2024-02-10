@@ -33,7 +33,8 @@ class Square(Rectangle):
 
     @size.setter
     def size(self, value):
-        """This is the setter method for the size attribute for a square object.
+        """This is the setter method for the size attribute
+        for a square object.
         Args:
             value (int): the value that size will be assigned to.
         """

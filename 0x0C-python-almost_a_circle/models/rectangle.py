@@ -179,7 +179,8 @@ class Rectangle(Base):
         """This method returns a dictionary representation of a
         Rectangle object.
         """
-        rectangle_dic = dict(id=self.id, width=self.__width,
-                      height=self.__height, x=self.__x,
-                      y=self.__y)
+        rectangle_dic = dict(
+            id=self.id, width=self.__width,
+            height=self.__height, x=self.__x,
+            y=self.__y)
         return (rectangle_dic)

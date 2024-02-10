@@ -61,3 +61,18 @@ class Base:
         if (json_string is None) or (json_string == ""):
             return ([])
         return (json.loads(json_string))
+
+    @classmethod
+    def create(cls, **dictionary):
+        if (cls.__name__ == "Rectangle"):
+            newobj = cls(1, 1)
+            if "size" in dictionary:
+                dictionary["width"] = dictionary["size"]
+                dictionary["height"] = dictionary["size"]
+            newobj.update(**dictionary)
+        elif (cls.__name__ == "Square"):
+            newobj = cls(1)
+            if "width" in dictionary:
+                dictionary['size'] = dictionary['width']
+            newobj.update(**dictionary)
+        return (newobj)
