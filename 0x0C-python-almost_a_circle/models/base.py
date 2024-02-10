@@ -24,6 +24,11 @@ class Base:
 
     @staticmethod
     def to_json_string(list_dictionaries):
+        """This method returns the JSON string representation
+        of ``list_dictionaries``
+        Args:
+            list_dictionaries (list): list of dictionaries.
+        """
         if (list_dictionaries is None) or (len(list_dictionaries) == 0):
             return ("[]")
         return (json.dumps(list_dictionaries))
@@ -44,3 +49,15 @@ class Base:
                 for element in list_objs:
                     dictionary_list.append(element.to_dictionary())
                 f.write(cls.to_json_string(dictionary_list))
+
+    @staticmethod
+    def from_json_string(json_string):
+        """This static method returns a list of dictionaries from
+        the JSON string representation ``json_string``.
+        Args:
+            json_string (str): A JSON string representation for
+                a list of dictionaries.
+        """
+        if (json_string is None) or (json_string == ""):
+            return ([])
+        return (json.loads(json_string))
