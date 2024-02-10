@@ -174,3 +174,12 @@ class Rectangle(Base):
                     self.__x = kwargs[arg]
                 elif arg == 'y':
                     self.__y = kwargs[arg]
+
+    def to_dictionary(self):
+        """This method returns a dictionary representation of a
+        Rectangle object.
+        """
+        recdic = dict(id=self.id, width=self.__width,
+                      height=self.__height, x=self.__x,
+                      y=self.__y)
+        return (recdic)
