@@ -2,6 +2,7 @@
 """This module defines a class named ``Base``.
 """
 import json
+import csv
 
 
 class Base:
@@ -90,6 +91,49 @@ class Base:
                 objects = cls.from_json_string(content)
                 for object in objects:
                     newobj = cls.create(**object)
+                    instance_list.append(newobj)
+                return (instance_list)
+        except FileNotFoundError:
+            return ([])
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """This class method writes the csv string representation
+        of list_objs to a file.
+        Args:
+            list_objs (list): list of objects that inherit from Base class.
+        """
+        filename = "{}.csv".format(cls.__name__)
+        with open(filename, "w", encoding='utf-8') as f:
+            if (list_objs is None):
+                f.write("[]")
+            else:
+                dicts = []
+                if (cls.__name__ == "Rectangle"):
+                    columns = ['id', 'width', 'height', 'x', 'y']
+                    for element in list_objs:
+                        dicts.append(element.to_dictionary())
+                elif (cls.__name__ == "Square"):
+                    columns = ['id', 'size', 'x', 'y']
+                    for element in list_objs:
+                        dicts.append(element.to_dictionary())
+                csvwriter = csv.DictWriter(f, fieldnames=columns)
+                csvwriter.writeheader()
+                csvwriter.writerows(dicts)
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Loads objects from a CSV file.
+        """
+        filename = "{}.csv".format(cls.__name__)
+        try:
+            with open(filename, "r", encoding='utf-8') as f:
+                instance_list = []
+                csvreader = csv.DictReader(f)
+                for line in csvreader:
+                    for key in line:
+                        line[key] = int(line[key])
+                    newobj = cls.create(**line)
                     instance_list.append(newobj)
                 return (instance_list)
         except FileNotFoundError:
