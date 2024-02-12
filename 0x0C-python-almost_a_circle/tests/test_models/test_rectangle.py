@@ -34,7 +34,7 @@ class rec_init_test(unittest.TestCase):
         a = Rectangle(20, 30, 5, 7)
         self.assertEqual(a.width, 20)
 
-    def test_4args(self):
+    def test_5args(self):
         a = Rectangle(20, 30, 5, 7, 8)
         self.assertEqual(str(a), "[Rectangle] (8) 5/7 - 20/30")
 
@@ -283,17 +283,17 @@ class rec_update_test(unittest.TestCase):
         r.update(**dict())
         self.assertEqual(str(r), "[Rectangle] (1) 0/0 - 10/10")
 
-    def test_update_emptydict(self):
+    def test_update_Nonearg(self):
         r = Rectangle(10, 10, 0, 0, 1)
         r.update(None)
         self.assertEqual(str(r), "[Rectangle] (None) 0/0 - 10/10")
 
-    def test_update_floatint(self):
+    def test_update_floatinf(self):
         r = Rectangle(10, 10, 0, 0, 1)
         r.update(float('inf'))
         self.assertEqual(str(r), "[Rectangle] (inf) 0/0 - 10/10")
 
-    def test_update_floatint(self):
+    def test_update_floatnan(self):
         r = Rectangle(10, 10, 0, 0, 1)
         r.update(float('nan'))
         self.assertEqual(str(r), "[Rectangle] (nan) 0/0 - 10/10")
@@ -320,13 +320,13 @@ class rec_update_test(unittest.TestCase):
         r.update(*attr)
         self.assertEqual(str(r), "[Rectangle] (4) 4/5 - 5/-3")
 
-    def test_update_negativeheight(self):
+    def test_update_negativex(self):
         r = Rectangle(10, 10, 0, 0, 1)
         attr = [4, 5, 3, -4, 5]
         r.update(*attr)
         self.assertEqual(str(r), "[Rectangle] (4) -4/5 - 5/3")
 
-    def test_update_negativeheight(self):
+    def test_update_negativey(self):
         r = Rectangle(10, 10, 0, 0, 1)
         attr = [4, 5, 3, 4, -5]
         r.update(*attr)
