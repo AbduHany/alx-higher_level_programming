@@ -71,7 +71,6 @@ class base_init_test(unittest.TestCase):
         b = Base(False)
         self.assertFalse(b.id)
 
-
     def test_tuple(self):
         a = Base((1, 2, 3))
         self.assertEqual(a.id, (1, 2, 3))
@@ -79,6 +78,7 @@ class base_init_test(unittest.TestCase):
     def test_set(self):
         a = Base({1, 2, 3})
         self.assertEqual(a.id, {1, 2, 3})
+
 
 class base_tojsonstring_test(unittest.TestCase):
     """This method tests the ``to_json_string`` method of the base class.
@@ -147,15 +147,253 @@ class base_tojsonstring_test(unittest.TestCase):
         self.assertEqual(Base.to_json_string(dictlist), json.dumps(dictlist))
 
     def test_emptyargs(self):
-        self.assertEqual(Base.to_json_string(), 1)
+        with self.assertRaises(TypeError):
+            Base.to_json_string()
 
     def test_morethanonearg(self):
         dictlist = [dict(id=1, size=5, x=2, y=1)]
         dictlist2 = [dict(id=3, size=10, x=3, y=5)]
-        self.assertEqual(Base.to_json_string(dictlist, dictlist2), 1)
+        with self.assertRaises(TypeError):
+            Base.to_json_string(dictlist, dictlist2)
+
 
 class base_savetofile_test(unittest.TestCase):
     """This class tests the ``load_from_file``
     """
-    def test_em(self):
-        pass
+    def test_listrectangles(self):
+        rec1 = Rectangle(1, 4, 5, 0, 1)
+        rec2 = Rectangle(5, 5, 6, 1, 0)
+        listrecs = [rec1, rec2]
+        listdicts = [rec1.to_dictionary(), rec2.to_dictionary()]
+        Rectangle.save_to_file(listrecs)
+        with open("Rectangle.json", "r", encoding='utf-8') as f:
+            self.assertEqual(f.read(), json.dumps(listdicts))
+
+    def test_listsquares(self):
+        s1 = Square(1, 4, 5, 0)
+        s2 = Square(5, 5, 6, 1)
+        listsquares = [s1, s2]
+        listdicts = [s1.to_dictionary(), s2.to_dictionary()]
+        Square.save_to_file(listsquares)
+        with open("Square.json", "r", encoding='utf-8') as f:
+            self.assertEqual(f.read(), json.dumps(listdicts))
+
+    def test_mixedlist_rectangle_class(self):
+        s1 = Square(1, 4, 5, 0)
+        r1 = Rectangle(4, 5, 6, 7, 1)
+        listobjs = [s1, r1]
+        listdicts = [s1.to_dictionary(), r1.to_dictionary()]
+        Rectangle.save_to_file(listobjs)
+        with open("Rectangle.json", "r", encoding='utf-8') as f:
+            self.assertEqual(f.read(), json.dumps(listdicts))
+
+    def test_mixedlist_square_class(self):
+        s1 = Square(1, 4, 5, 0)
+        r1 = Rectangle(4, 5, 6, 7, 1)
+        listobjs = [s1, r1]
+        listdicts = [s1.to_dictionary(), r1.to_dictionary()]
+        Square.save_to_file(listobjs)
+        with open("Square.json", "r", encoding='utf-8') as f:
+            self.assertEqual(f.read(), json.dumps(listdicts))
+
+    def test_singleobj(self):
+        s1 = Square(1, 4, 5, 0)
+        with self.assertRaises(TypeError):
+            Square.save_to_file(s1)
+
+    def test_emptylist(self):
+        listobjs = []
+        Square.save_to_file(listobjs)
+        with open("Square.json", "r", encoding='utf-8') as f:
+            self.assertEqual(f.read(), '[]')
+
+    def test_Nonelist(self):
+        listobjs = None
+        Square.save_to_file(listobjs)
+        with open("Square.json", "r", encoding='utf-8') as f:
+            self.assertEqual(f.read(), '[]')
+
+    def test_strarg(self):
+        listobjs = "I SWEAR IM A LIST"
+        with self.assertRaises(AttributeError):
+            Rectangle.save_to_file(listobjs)
+
+    def test_intarg(self):
+        listobjs = 5
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file(listobjs)
+
+    def test_floatarg(self):
+        listobjs = 5.23
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file(listobjs)
+
+    def test_dictarg(self):
+        listobjs = dict(id=1, size=5, x=1, y=0)
+        with self.assertRaises(AttributeError):
+            Rectangle.save_to_file(listobjs)
+
+    def test_listofdifftypes(self):
+        listobjs = [dict(id=1, size=5, x=1, y=0), "RECTANGLE", 5]
+        with self.assertRaises(AttributeError):
+            Rectangle.save_to_file(listobjs)
+
+    def test_noargs(self):
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file()
+
+    def test_morethanonearg(self):
+        s1 = [Square(1, 4, 5, 0)]
+        r1 = [Rectangle(4, 5, 6, 7, 1)]
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file(s1, r1)
+
+
+class base_fromjsonstring_test(unittest.TestCase):
+    """This class tests the staticmethod
+    from_json_string method
+    """
+    def test_normalrecargs(self):
+        a = Rectangle(1, 2, 3, 4, 5).to_dictionary()
+        ajson = json.dumps(a)
+        b = Base.from_json_string(ajson)
+        self.assertEqual(b, a)
+
+    def test_randomjson(self):
+        a = ["I am a random json", 1, 2]
+        ajson = json.dumps(a)
+        b = Base.from_json_string(ajson)
+        self.assertEqual(a, b)
+
+    def test_string(self):
+        a = "Random string"
+        with self.assertRaises(json.JSONDecodeError):
+            b = Base.from_json_string(a)
+
+    def test_num(self):
+        a = 5
+        with self.assertRaises(TypeError):
+            b = Base.from_json_string(a)
+
+    def test_float(self):
+        a = 5.5
+        with self.assertRaises(TypeError):
+            b = Base.from_json_string(a)
+
+    def test_list(self):
+        a = ["hi", 1, 2]
+        with self.assertRaises(TypeError):
+            b = Base.from_json_string(a)
+
+    def test_dict(self):
+        a = dict(id=1, size=4, x=0, y=0)
+        with self.assertRaises(TypeError):
+            b = Base.from_json_string(a)
+
+    def test_tuple(self):
+        a = (5, 4, 6, 7)
+        with self.assertRaises(TypeError):
+            b = Base.from_json_string(a)
+
+    def test_set(self):
+        a = {1, 2, 4}
+        with self.assertRaises(TypeError):
+            b = Base.from_json_string(a)
+
+    def test_noargs(self):
+        with self.assertRaises(TypeError):
+            b = Base.from_json_string()
+
+    def test_morethanone(self):
+        a = json.dumps(Square(1, 6, 4, 0).to_dictionary())
+        b = json.dumps(Square(2, 4, 65, 7).to_dictionary())
+        with self.assertRaises(TypeError):
+            b = Base.from_json_string(a, b)
+
+
+class base_create_test(unittest.TestCase):
+    """This class tests the create classmethod
+    of the base class
+    """
+    def test_normalargs_square(self):
+        a = dict(id=1, size=5, x=2, y=1)
+        b = Square.create(**a)
+        self.assertEqual(b.to_dictionary(), Square(5, 2, 1, 1).to_dictionary())
+
+    def test_normalargs_Rectangle(self):
+        a = dict(id=1, width=5, height=2, x=2, y=1)
+        b = Rectangle.create(**a)
+        self.assertEqual(b.to_dictionary(),
+                         Rectangle(5, 2, 2, 1, 1).to_dictionary())
+
+    def test_rec_with_squareclass(self):
+        a = dict(id=1, width=5, height=2, x=2, y=1)
+        b = Square.create(**a)
+        self.assertEqual(b.to_dictionary(),
+                         Square(5, 2, 1, 1).to_dictionary())
+
+    def test_squ_with_rectangleclass(self):
+        a = dict(id=1, size=10, x=2, y=1)
+        b = Rectangle.create(**a)
+        self.assertEqual(b.to_dictionary(),
+                         Rectangle(10, 10, 2, 1, 1).to_dictionary())
+
+    def test_randomkeydict(self):
+        a = dict(id=4, abdu=1, hany=10, hi=2, bye=1)
+        b = Rectangle.create(**a)
+        self.assertEqual(b.to_dictionary(),
+                         Rectangle(1, 1, 0, 0, 4).to_dictionary())
+
+    def test_listarg(self):
+        a = [1, 2, 3, 6]
+        with self.assertRaises(TypeError):
+            b = Rectangle.create(**a)
+
+    def test_strarg(self):
+        a = "HI"
+        with self.assertRaises(TypeError):
+            b = Rectangle.create(**a)
+
+    def test_intarg(self):
+        a = 5
+        with self.assertRaises(TypeError):
+            b = Rectangle.create(**a)
+
+    def test_floatarg(self):
+        a = 5.4
+        with self.assertRaises(TypeError):
+            b = Rectangle.create(**a)
+
+    def test_tuplearg(self):
+        a = (3, 4, 5)
+        with self.assertRaises(TypeError):
+            b = Rectangle.create(**a)
+
+    def test_setarg(self):
+        a = {1, 2, 4}
+        with self.assertRaises(TypeError):
+            b = Rectangle.create(**a)
+
+    def test_noarg(self):
+        b = Rectangle.create()
+        self.assertEqual(type(b), type(Rectangle(1, 1)))
+
+    def test_morethanonearg(self):
+        dict1 = Rectangle(5, 4, 3, 5, 2).to_dictionary()
+        dict2 = Rectangle(6, 5, 2, 4, 5).to_dictionary()
+        with self.assertRaises(TypeError):
+            b = Rectangle.create(**dict1, **dict2)
+
+
+class base_loadfromfile_test(unittest.TestCase):
+    """This class tests the loadfromfile
+    """
+    def test_normalcase(self):
+        a = Rectangle(1, 2, 3, 4, 5)
+        Rectangle
+
+
+
+
+if __name__ == "__main__":
+    unittest.main()
