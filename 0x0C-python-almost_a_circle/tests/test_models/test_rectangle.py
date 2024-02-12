@@ -272,3 +272,78 @@ class rec_update_test(unittest.TestCase):
         r = Rectangle(10, 10, 0, 0, 1)
         r.update(4.5)
         self.assertEqual(str(r), "[Rectangle] (4.5) 0/0 - 10/10")
+
+    def test_update_emptylist(self):
+        r = Rectangle(10, 10, 0, 0, 1)
+        r.update(*[])
+        self.assertEqual(str(r), "[Rectangle] (1) 0/0 - 10/10")
+
+    def test_update_emptydict(self):
+        r = Rectangle(10, 10, 0, 0, 1)
+        r.update(**dict())
+        self.assertEqual(str(r), "[Rectangle] (1) 0/0 - 10/10")
+
+    def test_update_emptydict(self):
+        r = Rectangle(10, 10, 0, 0, 1)
+        r.update(None)
+        self.assertEqual(str(r), "[Rectangle] (None) 0/0 - 10/10")
+
+    def test_update_floatint(self):
+        r = Rectangle(10, 10, 0, 0, 1)
+        r.update(float('inf'))
+        self.assertEqual(str(r), "[Rectangle] (inf) 0/0 - 10/10")
+
+    def test_update_floatint(self):
+        r = Rectangle(10, 10, 0, 0, 1)
+        r.update(float('nan'))
+        self.assertEqual(str(r), "[Rectangle] (nan) 0/0 - 10/10")
+
+    def test_update_negativeid(self):
+        r = Rectangle(10, 10, 0, 0, 1)
+        r.update([-4, 5])
+        self.assertEqual(str(r), "[Rectangle] ([-4, 5]) 0/0 - 10/10")
+
+    def test_update_multipleargs(self):
+        r = Rectangle(10, 10, 0, 0, 1)
+        r.update(-4, 5, 6, 4, 3, 2)
+        self.assertEqual(str(r), "[Rectangle] (-4) 4/3 - 5/6")
+
+    def test_update_negativewidth(self):
+        r = Rectangle(10, 10, 0, 0, 1)
+        attr = [4, -5, 3, 4, 5]
+        r.update(*attr)
+        self.assertEqual(str(r), "[Rectangle] (4) 4/5 - -5/3")
+
+    def test_update_negativeheight(self):
+        r = Rectangle(10, 10, 0, 0, 1)
+        attr = [4, 5, -3, 4, 5]
+        r.update(*attr)
+        self.assertEqual(str(r), "[Rectangle] (4) 4/5 - 5/-3")
+
+    def test_update_negativeheight(self):
+        r = Rectangle(10, 10, 0, 0, 1)
+        attr = [4, 5, 3, -4, 5]
+        r.update(*attr)
+        self.assertEqual(str(r), "[Rectangle] (4) -4/5 - 5/3")
+
+    def test_update_negativeheight(self):
+        r = Rectangle(10, 10, 0, 0, 1)
+        attr = [4, 5, 3, 4, -5]
+        r.update(*attr)
+        self.assertEqual(str(r), "[Rectangle] (4) 4/-5 - 5/3")
+
+
+
+class rec_todictionary_test(unittest.TestCase):
+    """Tests the todictionary instance attribute.
+    """
+    def test_rectangletodict(self):
+        r = Rectangle(10, 10, 0, 0, 1)
+        self.assertEqual(r.to_dictionary(), dict(
+            id=1, width=10, height=10, x=0, y=0
+        ))
+
+    def test_oneargument(self):
+        r = Rectangle(10, 10, 0, 0, 1)
+        with self.assertRaises(TypeError):
+            mydict = r.to_dictionary("hi")
