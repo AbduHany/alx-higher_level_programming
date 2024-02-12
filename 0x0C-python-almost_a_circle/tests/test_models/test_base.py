@@ -431,6 +431,10 @@ class base_loadfromfile_test(unittest.TestCase):
         a = Square.load_from_file()
         self.assertEqual(a, [])
 
+    def test_filedoesntexist(self):
+        a = Rectangle.load_from_file()
+        self.assertEqual(a, [])
+
     def test_onearg(self):
         with self.assertRaises(TypeError):
             a = Square.load_from_file([1, 2])
