@@ -175,3 +175,100 @@ class rec_str_test(unittest.TestCase):
     def test_square(self):
         s = Square(3, 2, 0, 2)
         self.assertEqual(str(s), "[Square] (2) 2/0 - 3")
+
+    def test_args(self):
+        s = Square(3, 2, 0, 2)
+        with self.assertRaises(TypeError):
+            s.__str__("HI")
+
+
+class rec_update_test(unittest.TestCase):
+    """This class tests the update instance method for
+    a rectangle or a rectangle inherited class object.
+    """
+    def test_updatelist(self):
+        r = Rectangle(5, 4, 0, 0, 1)
+        newattr = [1, 2, 3, 4, 4]
+        r.update(*newattr)
+        self.assertEqual(str(r), "[Rectangle] (1) 4/4 - 2/3")
+
+    def test_updatedict(self):
+        r = Rectangle(5, 4, 0, 0, 1)
+        newattr = dict(id=1, width=2, height=3, x=4, y=4)
+        r.update(**newattr)
+        self.assertEqual(str(r), "[Rectangle] (1) 4/4 - 2/3")
+
+    def test_update_listonearg(self):
+        """updates only the id if one arg is given
+        """
+        r = Rectangle(5, 4, 0, 0, 1)
+        newattr = [1]
+        r.update(*newattr)
+        self.assertEqual(str(r), "[Rectangle] (1) 0/0 - 5/4")
+
+    def test_update_listtwoarg(self):
+        """updates  the id & width if one arg is given
+        """
+        r = Rectangle(10, 10, 0, 0, 1)
+        newattr = [1, 4]
+        r.update(*newattr)
+        self.assertEqual(str(r), "[Rectangle] (1) 0/0 - 4/10")
+
+    def test_update_listthreearg(self):
+        """updates only the id, width & height if one arg is given
+        """
+        r = Rectangle(10, 10, 0, 0, 1)
+        newattr = [1, 4, 5]
+        r.update(*newattr)
+        self.assertEqual(str(r), "[Rectangle] (1) 0/0 - 4/5")
+
+    def test_update_listfourarg(self):
+        """updates only the id, width, height & x if one arg is given
+        """
+        r = Rectangle(10, 10, 0, 0, 1)
+        newattr = [1, 4, 5, 6]
+        r.update(*newattr)
+        self.assertEqual(str(r), "[Rectangle] (1) 6/0 - 4/5")
+
+    def test_update_listfive_arg(self):
+        """updates only the id, width, height, x & y if one arg is given
+        """
+        r = Rectangle(10, 10, 0, 0, 1)
+        newattr = [1, 4, 5, 6, 10]
+        r.update(*newattr)
+        self.assertEqual(str(r), "[Rectangle] (1) 6/10 - 4/5")
+
+    def test_update_morethanfive_arg(self):
+        """ignores any list item that is indexed at more than 4
+        """
+        r = Rectangle(10, 10, 0, 0, 1)
+        newattr = [1, 4, 5, 6, 10, 20]
+        r.update(*newattr)
+        self.assertEqual(str(r), "[Rectangle] (1) 6/10 - 4/5")
+
+    def test_update_onekeydict(self):
+        r = Rectangle(10, 10, 0, 0, 1)
+        newattr = dict(id=4)
+        r.update(**newattr)
+        self.assertEqual(str(r), "[Rectangle] (4) 0/0 - 10/10")
+
+    def test_update_2keydict(self):
+        r = Rectangle(10, 10, 0, 0, 1)
+        newattr = dict(id=4, abdu=3)
+        r.update(**newattr)
+        self.assertEqual(str(r), "[Rectangle] (4) 0/0 - 10/10")
+
+    def test_update_strarg(self):
+        r = Rectangle(10, 10, 0, 0, 1)
+        r.update("Hello")
+        self.assertEqual(str(r), "[Rectangle] (Hello) 0/0 - 10/10")
+
+    def test_update_intarg(self):
+        r = Rectangle(10, 10, 0, 0, 1)
+        r.update(3)
+        self.assertEqual(str(r), "[Rectangle] (3) 0/0 - 10/10")
+
+    def test_update_floatarg(self):
+        r = Rectangle(10, 10, 0, 0, 1)
+        r.update(4.5)
+        self.assertEqual(str(r), "[Rectangle] (4.5) 0/0 - 10/10")
