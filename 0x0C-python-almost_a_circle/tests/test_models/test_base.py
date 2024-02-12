@@ -172,6 +172,10 @@ class base_savetofile_test(unittest.TestCase):
             os.remove('Square.json')
         except Exception:
             pass
+        try:
+            os.remove('Base.json')
+        except Exception:
+            pass
 
     def test_listrectangles(self):
         rec1 = Rectangle(1, 4, 5, 0, 1)
@@ -260,6 +264,15 @@ class base_savetofile_test(unittest.TestCase):
         r1 = [Rectangle(4, 5, 6, 7, 1)]
         with self.assertRaises(TypeError):
             Rectangle.save_to_file(s1, r1)
+
+    def test_Basesavetofile(self):
+        s1 = Square(1, 4, 5, 0)
+        s2 = Square(5, 6, 7, 8)
+        listobjs = [s1, s2]
+        listdicts = [s1.to_dictionary(), s2.to_dictionary()]
+        Base.save_to_file(listobjs)
+        with open("Base.json", "r", encoding='utf-8') as f:
+            self.assertEqual(f.read(), json.dumps(listdicts))
 
 
 class base_fromjsonstring_test(unittest.TestCase):
