@@ -162,3 +162,16 @@ class rec_display_test(unittest.TestCase):
         s.display()
         self.assertEqual(self.output.getvalue(), "#####\n#####\n#####\n"
                          "#####\n#####\n")
+
+
+class rec_str_test(unittest.TestCase):
+    """This class tests the str representation of a
+    Rectangle or Rectangle inherited class object.
+    """
+    def test_rectangle(self):
+        r = Rectangle(2, 3, 0, 0, 2)
+        self.assertEqual(str(r), "[Rectangle] (2) 0/0 - 2/3")
+
+    def test_square(self):
+        s = Square(3, 2, 0, 2)
+        self.assertEqual(str(s), "[Square] (2) 2/0 - 3")
