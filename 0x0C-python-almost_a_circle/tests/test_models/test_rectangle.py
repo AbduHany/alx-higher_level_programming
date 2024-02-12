@@ -7,6 +7,8 @@ from models.base import Base
 import json
 import unittest
 import os
+import sys
+import io
 
 
 class rec_init_test(unittest.TestCase):
@@ -137,6 +139,26 @@ class rec_settergetter_test(unittest.TestCase):
 class rec_display_test(unittest.TestCase):
     """This class tests the display instance method.
     """
+    def setUp(self):
+        """redirecting stdout to output
+        """
+        self.output = io.StringIO()
+        self.originalstdout = sys.stdout
+        sys.stdout = self.output
+
+    def tearDown(self):
+        """resetting stdout to its original
+        value
+        """
+        sys.stdout = self.originalstdout
+
     def test_rectangle(self):
-        rec = Rectangle(5, 5, 0, 0, 2)
-        pass
+        rec = Rectangle(2, 3, 0, 0, 2)
+        rec.display()
+        self.assertEqual(self.output.getvalue(), "##\n##\n##\n")
+
+    def test_square(self):
+        s = Square(5, 0, 0)
+        s.display()
+        self.assertEqual(self.output.getvalue(), "#####\n#####\n#####\n"
+                         "#####\n#####\n")
