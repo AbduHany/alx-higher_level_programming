@@ -72,6 +72,10 @@ class base_init_test(unittest.TestCase):
         b = Base(False)
         self.assertFalse(b.id)
 
+    def test_complex_id(self):
+        a = Base(complex(5))
+        self.assertEqual(a.id, complex(5))
+
     def test_tuple(self):
         a = Base((1, 2, 3))
         self.assertEqual(a.id, (1, 2, 3))
@@ -79,6 +83,10 @@ class base_init_test(unittest.TestCase):
     def test_set(self):
         a = Base({1, 2, 3})
         self.assertEqual(a.id, {1, 2, 3})
+
+    def test_range(self):
+        a = Base(range(5))
+        self.assertEqual(a.id, range(5))
 
 
 class base_tojsonstring_test(unittest.TestCase):
