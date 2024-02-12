@@ -451,6 +451,11 @@ class base_loadfromfile_test(unittest.TestCase):
         a = Square.load_from_file()
         self.assertEqual(str(a[0]), "[Square] (4) 5/3 - 1")
 
+    def test_loadBase_class(self):
+        r1 = Rectangle(1, 2, 5, 3, 4)
+        with self.assertRaises(TypeError):
+            a = Base.load_from_file([r1])
+
 
 if __name__ == "__main__":
     unittest.main()
