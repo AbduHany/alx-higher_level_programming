@@ -298,3 +298,18 @@ class squ_update_test(unittest.TestCase):
         attr = [4, 5, 3, 4, -5]
         s.update(*attr)
         self.assertEqual(str(s), "[Square] (4) 3/4 - 5")
+
+
+class squ_todictionary_test(unittest.TestCase):
+    """Tests the todictionary instance attribute.
+    """
+    def test_squaretodict(self):
+        s = Square(10, 10, 0, 2)
+        self.assertEqual(s.to_dictionary(), dict(
+            id=2, size=10, x=10, y=0
+        ))
+
+        def test_oneargument(self):
+            s = Square(10, 10, 0, 1)
+            with self.assertRaises(TypeError):
+                mydict = s.to_dictionary("hi")
