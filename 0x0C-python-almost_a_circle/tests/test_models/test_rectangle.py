@@ -91,10 +91,6 @@ class rec_areamethod_test(unittest.TestCase):
         rec = Rectangle(5, 4, 2, 3, 5)
         self.assertEqual(rec.area(), 20)
 
-    def test_squarearea(self):
-        squ = Square(5, 0, 1, 4)
-        self.assertEqual(squ.area(), 25)
-
     def test_givenarg(self):
         rec = Rectangle(5, 4, 2, 3, 5)
         with self.assertRaises(TypeError):
@@ -172,14 +168,10 @@ class rec_str_test(unittest.TestCase):
         r = Rectangle(2, 3, 0, 0, 2)
         self.assertEqual(str(r), "[Rectangle] (2) 0/0 - 2/3")
 
-    def test_square(self):
-        s = Square(3, 2, 0, 2)
-        self.assertEqual(str(s), "[Square] (2) 2/0 - 3")
-
     def test_args(self):
-        s = Square(3, 2, 0, 2)
+        r = Rectangle(2, 3, 0, 0, 2)
         with self.assertRaises(TypeError):
-            s.__str__("HI")
+            r.__str__("HI")
 
 
 class rec_update_test(unittest.TestCase):
@@ -331,7 +323,6 @@ class rec_update_test(unittest.TestCase):
         attr = [4, 5, 3, 4, -5]
         r.update(*attr)
         self.assertEqual(str(r), "[Rectangle] (4) 4/-5 - 5/3")
-
 
 
 class rec_todictionary_test(unittest.TestCase):
