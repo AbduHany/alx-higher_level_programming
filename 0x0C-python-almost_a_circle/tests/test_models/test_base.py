@@ -427,11 +427,11 @@ class base_loadfromfile_test(unittest.TestCase):
         a = Square.load_from_file()
         self.assertEqual(a[0].to_dictionary(), s1.to_dictionary())
 
-    def test_filedoesntexist(self):
+    def test_sfiledoesntexist(self):
         a = Square.load_from_file()
         self.assertEqual(a, [])
 
-    def test_filedoesntexist(self):
+    def test_rfiledoesntexist(self):
         a = Rectangle.load_from_file()
         self.assertEqual(a, [])
 
@@ -455,6 +455,38 @@ class base_loadfromfile_test(unittest.TestCase):
         r1 = Rectangle(1, 2, 5, 3, 4)
         with self.assertRaises(TypeError):
             a = Base.load_from_file([r1])
+
+
+class base_csvsavetofile_test(unittest.TestCase):
+    """This class tests the ``load_from_file``
+    """
+    def tearDown(self):
+        """removes files created during testing.
+        """
+        try:
+            os.remove('Rectangle.csv')
+        except Exception:
+            pass
+        try:
+            os.remove('Square.csv')
+        except Exception:
+            pass
+
+    def test_listrectanglescsv(self):
+        rec1 = Rectangle(1, 4, 5, 0, 1)
+        rec2 = Rectangle(5, 5, 6, 1, 0)
+        Rectangle.save_to_file_csv([rec1, rec2])
+        with open("Rectangle.csv", "r", encoding='utf-8') as f:
+            self.assertEqual(f.read(), "id,width,height,x,y\n"
+                             "1,1,4,5,0\n0,5,5,6,1\n")
+
+    def test_listsquarescsv(self):
+        s1 = Square(1, 4, 5, 0)
+        s2 = Square(5, 5, 6, 1)
+        Square.save_to_file_csv([s1, s2])
+        with open("Square.csv", "r", encoding='utf-8') as f:
+            self.assertEqual(f.read(), "id,size,x,y\n"
+                             "0,1,4,5\n1,5,5,6\n")
 
 
 if __name__ == "__main__":
