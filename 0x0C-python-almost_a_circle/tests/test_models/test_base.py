@@ -448,6 +448,5 @@ class base_loadfromfile_test(unittest.TestCase):
         self.assertEqual(str(a[0]), "[Square] (4) 5/3 - 1")
 
 
-
 if __name__ == "__main__":
     unittest.main()

@@ -79,3 +79,64 @@ class rec_init_test(unittest.TestCase):
         self.assertEqual(str(a), "[Rectangle] (999999999999999999) "
                          "999999999999999999/9999999999999999 - "
                          "999999999999999999/9999999999999999")
+
+
+class rec_areamethod_test(unittest.TestCase):
+    """This class tests the area method of the Rectangle
+    class
+    """
+    def test_rectarea(self):
+        rec = Rectangle(5, 4, 2, 3, 5)
+        self.assertEqual(rec.area(), 20)
+
+    def test_squarearea(self):
+        squ = Square(5, 0, 1, 4)
+        self.assertEqual(squ.area(), 25)
+
+    def test_givenarg(self):
+        rec = Rectangle(5, 4, 2, 3, 5)
+        with self.assertRaises(TypeError):
+            rec.area("Hello")
+
+
+class rec_settergetter_test(unittest.TestCase):
+    """This class tests the various setter and getter
+    methods of the attributes
+    """
+    def test_widthsetter(self):
+        rec = Rectangle(5, 4, 2, 3, 5)
+        rec.width = 10
+        self.assertEqual(rec.width, 10)
+
+    def test_heightsetter(self):
+        rec = Rectangle(5, 4, 2, 3, 5)
+        rec.height = 10
+        self.assertEqual(rec.height, 10)
+
+    def test_xsetter(self):
+        rec = Rectangle(5, 4, 2, 3, 5)
+        rec.x = 10
+        self.assertEqual(rec.x, 10)
+
+    def test_ysetter(self):
+        rec = Rectangle(5, 4, 2, 3, 5)
+        rec.y = 10
+        self.assertEqual(rec.y, 10)
+
+    def test_invalidtype(self):
+        rec = Rectangle(5, 4, 2, 3, 5)
+        with self.assertRaises(TypeError):
+            rec.width = "HELLO"
+
+    def test_invalidvalue(self):
+        rec = Rectangle(5, 4, 2, 3, 5)
+        with self.assertRaises(ValueError):
+            rec.width = -100
+
+
+class rec_display_test(unittest.TestCase):
+    """This class tests the display instance method.
+    """
+    def test_rectangle(self):
+        rec = Rectangle(5, 5, 0, 0, 2)
+        pass
