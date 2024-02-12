@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """This module contains all unittests for the ``Base`` class
 """
+import os
 from models.rectangle import Rectangle
 from models.square import Square
 from models.base import Base
@@ -160,6 +161,18 @@ class base_tojsonstring_test(unittest.TestCase):
 class base_savetofile_test(unittest.TestCase):
     """This class tests the ``load_from_file``
     """
+    def tearDown(self):
+        """removes files created during testing.
+        """
+        try:
+            os.remove('Rectangle.json')
+        except Exception:
+            pass
+        try:
+            os.remove('Square.json')
+        except Exception:
+            pass
+
     def test_listrectangles(self):
         rec1 = Rectangle(1, 4, 5, 0, 1)
         rec2 = Rectangle(5, 5, 6, 1, 0)
@@ -388,10 +401,51 @@ class base_create_test(unittest.TestCase):
 class base_loadfromfile_test(unittest.TestCase):
     """This class tests the loadfromfile
     """
-    def test_normalcase(self):
-        a = Rectangle(1, 2, 3, 4, 5)
-        Rectangle
+    def tearDown(self):
+        """removes files created during testing.
+        """
+        try:
+            os.remove('Rectangle.json')
+        except Exception:
+            pass
+        try:
+            os.remove('Square.json')
+        except Exception:
+            pass
 
+    def test_normalcase_rectangle(self):
+        rec1 = Rectangle(1, 2, 3, 4, 5)
+        rec2 = Rectangle(3, 4, 5, 6, 7)
+        Rectangle.save_to_file([rec1, rec2])
+        a = Rectangle.load_from_file()
+        self.assertEqual(a[0].to_dictionary(), rec1.to_dictionary())
+
+    def test_normalcase_square(self):
+        s1 = Square(1, 2, 3, 4)
+        s2 = Square(3, 4, 5, 6)
+        Square.save_to_file([s1, s2])
+        a = Square.load_from_file()
+        self.assertEqual(a[0].to_dictionary(), s1.to_dictionary())
+
+    def test_filedoesntexist(self):
+        a = Square.load_from_file()
+        self.assertEqual(a, [])
+
+    def test_onearg(self):
+        with self.assertRaises(TypeError):
+            a = Square.load_from_file([1, 2])
+
+    def test_loadSquare_Rec_class(self):
+        s1 = Square(1, 2, 3, 4)
+        Rectangle.save_to_file([s1])
+        a = Rectangle.load_from_file()
+        self.assertEqual(str(a[0]), "[Rectangle] (4) 2/3 - 1/1")
+
+    def test_loadRec_Square_class(self):
+        r1 = Rectangle(1, 2, 5, 3, 4)
+        Square.save_to_file([r1])
+        a = Square.load_from_file()
+        self.assertEqual(str(a[0]), "[Square] (4) 5/3 - 1")
 
 
 
