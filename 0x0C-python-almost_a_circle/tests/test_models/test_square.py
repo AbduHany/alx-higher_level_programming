@@ -87,3 +87,43 @@ class squ_init_test(unittest.TestCase):
                       999999999999999999, 9999999999999999)
         self.assertEqual(str(a), "[Square] (9999999999999999) 9999999999999999"
                          "/999999999999999999 - 999999999999999999")
+
+
+class squ_settergetter_test(unittest.TestCase):
+    """This class tests the various setter and getter
+    methods of the attributes
+    """
+    def test_sizesetter(self):
+        s = Square(5, 4, 2, 3)
+        s.size = 10
+        self.assertEqual(s.size, 10)
+
+    def test_sizesetter(self):
+        s = Square(5, 4, 2, 3)
+        s.size = 10
+        self.assertEqual(s.width, 10)
+
+    def test_sizesetter(self):
+        s = Square(5, 4, 2, 3)
+        s.size = 10
+        self.assertEqual(s.height, 10)
+
+    def test_xsetter(self):
+        s = Square(5, 4, 2, 3)
+        s.x = 10
+        self.assertEqual(s.x, 10)
+
+    def test_ysetter(self):
+        s = Square(5, 4, 2, 3)
+        s.y = 10
+        self.assertEqual(s.y, 10)
+
+    def test_invalidtype(self):
+        s = Square(5, 4, 2, 3)
+        with self.assertRaises(TypeError):
+            s.size = "HELLO"
+
+    def test_invalidvalue(self):
+        s = Square(5, 4, 2, 3)
+        with self.assertRaises(ValueError):
+            s.size = -100
