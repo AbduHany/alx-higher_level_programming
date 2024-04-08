@@ -7,7 +7,7 @@ if (len === 2 || len === 3) {
   for (let i = 2; i < process.argv.length; i++) {
     sortedArr.push(Number(process.argv[i]));
   }
-  sortedArr = sortedArr.sort();
+  sortedArr = sortedArr.sort((a, b) => a - b);
   sortedArr = sortedArr.reverse();
   console.log(sortedArr[1]);
 }
