@@ -3,6 +3,7 @@ const len = process.argv.length;
 if (len === 2 || len === 3) {
   console.log(0);
 } else {
-  const sortedArr = process.argv.sort();
-  console.log(sortedArr[len - 2]);
+  let sortedArr = process.argv.map((x) => Number(x));
+  sortedArr = sortedArr.sort();
+  console.log(sortedArr[1]);
 }
