@@ -1,5 +1,6 @@
 #!/usr/bin/node
 const list = require('./100-data.js').list;
-const mappedList = list.map((x) => x * list.indexOf(x));
+let counter = 0;
+const mappedList = list.map((x) => x * counter++);
 console.log(list);
 console.log(mappedList);
