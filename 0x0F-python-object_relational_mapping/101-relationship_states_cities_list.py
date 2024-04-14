@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-"""This module deletes all State objects with a
-name containing the letter a from the database hbtn_0e_6_usa
+"""This module lists all State objects,
+and corresponding City objects, contained
+in the database hbtn_0e_101_usa
 """
 from relationship_state import Base, State
 from relationship_city import City

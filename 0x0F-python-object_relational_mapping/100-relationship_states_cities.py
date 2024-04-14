@@ -1,7 +1,6 @@
 #!/usr/bin/python3
-"""This module deletes all State objects with a
-name containing the letter a from the database hbtn_0e_6_usa
-"""
+"""This module creates the State `California` with the City
+`San Francisco` from the database hbtn_0e_100_usa"""
 from relationship_state import Base, State
 from relationship_city import City
 import sys
