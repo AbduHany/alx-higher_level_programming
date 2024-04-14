@@ -23,8 +23,11 @@ if __name__ == "__main__":
     for row in result:
         for city in row:
             arr.append(city)
-    for i in range(len(arr)):
-        if (i == (len(arr) - 1)):
-            print(arr[i])
-        else:
-            print(arr[i], end=", ")
+    if (len(arr) == 0):
+        print()
+    else:
+        for i in range(len(arr)):
+            if (i == (len(arr) - 1)):
+                print(arr[i])
+            else:
+                print(arr[i], end=", ")
