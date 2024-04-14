@@ -22,4 +22,4 @@ if __name__ == "__main__":
         result = (session.query(State).filter(State.name == statename).one())
         print("{}".format(result.id))
     except Exception:
-                  print("Not found")
+        print("Not found")
