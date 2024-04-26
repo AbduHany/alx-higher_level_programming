@@ -14,7 +14,6 @@ def find_peak(list_of_integers):
     if li == []:
         return None
     length = len(li)
-    print(li, length)
     peak = li[0]
     for i in range(length // 2):
         j = (length - i - 1)
