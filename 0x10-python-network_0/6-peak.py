@@ -11,16 +11,14 @@ def find_peak(list_of_integers):
         the peak integer of the list.
     """
     li = list_of_integers
-    if li == []:
+    if li == [] or li is None:
         return None
-    length = len(li)
-    peak = li[0]
-    for i in range(length // 2):
-        j = (length - i - 1)
-        max = li[i] if li[i] > li[j] else li[j]
-        if (max > peak):
-            peak = max
-    if (length % 2) != 0:
-        if li[length//2] > peak:
-            peak = li[length//2]
-    return (peak)
+    if len(li) == 1:
+        return (li[0])
+    elif len(li) == 2:
+        return (li[0] if li[0] > li[1] else li[1])
+    else:
+        half = len(li) // 2
+        left = find_peak(li[:half])
+        right = find_peak(li[half:])
+        return left if left > right else right
