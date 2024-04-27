@@ -35,4 +35,4 @@ def find_peak(list_of_integers):
             if li[i] > li[i - 1] and li[i] > li[i + 1]:
                 return li[i]
             else:
-                i+=1
+                i += 1
