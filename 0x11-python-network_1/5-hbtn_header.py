@@ -4,6 +4,7 @@ and displays the value of the variable `X-Request-Id` in the
 response header
 """
 import requests
+import requests.exceptions
 import sys
 
 
@@ -11,5 +12,5 @@ if __name__ == "__main__":
     try:
         r = requests.get(sys.argv[1])
         print(r.headers['X-Request-Id'])
-    except Exception:
+    except requests.exceptions.RequestException:
         pass
