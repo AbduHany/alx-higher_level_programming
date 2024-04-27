@@ -19,11 +19,10 @@ def find_peak(list_of_integers):
         return (li[0] if li[0] > li[1] else li[1])
     else:
         half = len(li) // 2
-        if (li[half] > li[half - 1] and li[half] > li[half + 1]):
+        if (li[half] >= li[half - 1] and li[half] >= li[half + 1]):
             return li[half]
-        elif (li[half] < li[half + 1] and li[half] > li[half - 1]):
-            return find_peak(li[half:])
-        elif (li[half] < li[half - 1] and li[half] > li[half + 1]):
+
+        elif (li[half] < li[half - 1]):
             return find_peak(li[:half])
         else:
-            return find_peak(li[:half])
+            return find_peak(li[half+1:])
