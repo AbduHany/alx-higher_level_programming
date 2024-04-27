@@ -15,4 +15,4 @@ if __name__ == "__main__":
     r = requests.get(url, headers=headers)
     a = r.json()
     for i in range(10):
-        print(a[i]['sha'], a[i]['commit']['author']['name'])
+        print(a[i]['sha']+': '+a[i]['commit']['author']['name'])
