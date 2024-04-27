@@ -14,4 +14,4 @@ if __name__ == "__main__":
     data = urllib.parse.urlencode(values)
     data = data.encode('ascii')
     with urllib.request.urlopen(url, data) as res:
-        thepage = res.read()
+        print(res.read().decode('utf-8'))
