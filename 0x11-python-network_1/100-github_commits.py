@@ -13,6 +13,9 @@ if __name__ == "__main__":
     headers = {'Accept': 'application/vnd.github+json',
                'X-GitHub-Api-Version': '2022-11-28'}
     r = requests.get(url, headers=headers)
-    a = r.json()
-    for i in range(10):
-        print(a[i]['sha']+': '+a[i]['commit']['author']['name'])
+    try:
+        a = r.json()
+        for i in range(10):
+            print(a[i]['sha']+': '+a[i]['commit']['author']['name'])
+    except Exception:
+        pass
