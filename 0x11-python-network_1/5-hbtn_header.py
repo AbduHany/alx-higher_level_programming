@@ -9,7 +9,7 @@ import sys
 
 if __name__ == "__main__":
     try:
-        r = requests.get(sys.argv[1])
+        r = requests.get(sys.argv[1], timeout=0.1)
         print(r.headers['X-Request-Id'])
     except Exception as e:
         pass
