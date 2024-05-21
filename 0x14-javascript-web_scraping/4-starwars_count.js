@@ -8,12 +8,13 @@ if (process.argv.length === 3) {
     if (err) {
       console.error(err);
     }
-    const charUrl = 'https://swapi-api.alx-tools.com/api/people/18/';
+    const results = JSON.parse(body).results;
     let count = 0;
-    const dict = JSON.parse(body);
-    for (const idx in dict.results) {
-      if (dict.results[idx].characters.includes(charUrl)) {
-        count++;
+    for (const idx in results) {
+      for (let i = 0; i < results[idx].characters.length; i++) {
+        if (results[idx].characters[i].includes('18')) {
+          count++;
+        }
       }
     }
     console.log(count);
