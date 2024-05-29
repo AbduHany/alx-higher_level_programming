@@ -1,12 +1,11 @@
-$(document).ready(function(){
-    $('DIV#toggle_header').on('click', function() {
-	if($('header').hasClass('red')) {
+$(document).ready(function () {
+  $('DIV#toggle_header').on('click', function () {
+    if ($('header').hasClass('red')) {
 	    $('header').removeClass('red');
 	    $('header').addClass('green');
-	}
-	else {
+    } else {
 	    $('header').removeClass('green');
 	    $('header').addClass('red');
-	}
-    });
+    }
+  });
 });
